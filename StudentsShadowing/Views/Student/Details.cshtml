@@ -1,0 +1,45 @@
+﻿@model StudentsShadowing.Models.ViewModels.StudentDetailsVM
+
+@{
+    ViewData["Title"] = $"{Model.Name} Id : {Model.Id}";
+}
+
+<h2>Details for @ViewData["Title"]</h2>
+
+<h4>Professionals</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Category
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Professionals)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-controller="Professional" asp-route-id="@Model.Id" asp-route-recId="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-controller="Professional" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-controller="Professional" asp-route-id="@item.Id" asp-route-recId="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+ </table>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" asp-controller="Student">Edit Student</a> |
+    <a asp-action="Create" asp-route-id="@Model.Id" asp-controller="Professional">Create a Professional</a> |
+    <a asp-action="Index" asp-controller="Home">Back Home</a>
+</div>
